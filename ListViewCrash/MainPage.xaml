@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ListViewCrash"
+             x:Class="ListViewCrash.MainPage"
+             x:DataType="local:MainPage">
+    <ListView ItemsSource="{Binding Items}" x:Name="listParent" SelectionMode="None" RowHeight="100">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid ColumnDefinitions="*" Margin="0,32">
+                        <Label Text="{Binding}"/>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding Source={x:Reference listParent}, Path=BindingContext.DeleteCommand}" CommandParameter="{Binding}"/>
+                        </Grid.GestureRecognizers>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+
+</ContentPage>
